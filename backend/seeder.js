@@ -5,7 +5,6 @@ import users from './data/users.js'
 import articles from './data/articles.js'
 import User from './models/userModel.js'
 import Article from './models/articlesModel.js'
-// import Order from './models/orderModel.js'
 import connectDB from './config/db.js'
 
 dotenv.config()
@@ -14,7 +13,6 @@ connectDB()
 
 const importData = async () => {
   try {
-    // await Order.deleteMany()
     await Article.deleteMany()
     await User.deleteMany()
 
@@ -38,7 +36,6 @@ const importData = async () => {
 
 const destroyData = async () => {
   try {
-    await Order.deleteMany()
     await Article.deleteMany()
     await User.deleteMany()
 
