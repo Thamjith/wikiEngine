@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap'
 import { listArticles } from '../actions/articleActions'
 import Article from '../components/Article'
 import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 const ArticlesScreen = () => {
 
@@ -20,7 +21,7 @@ const ArticlesScreen = () => {
     return (
         <>
             <h1>Articles</h1>
-            {loading ? (<Loader />): error ? (<h2>{error}</h2>) : (
+            {loading ? (<Loader />): error ? (<Message variant='danger'>{error}</Message>) : (
                 <>
                     <Row>
                         {articles.map((article) => (
