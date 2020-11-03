@@ -6,11 +6,22 @@ import {
     articleListReducer,
 } from './reducers/articleReducers'
 
+import {
+    userLoginReducer,
+} from './reducers/userReducers'
+
 const reducer = combineReducers({
     articleList: articleListReducer,
+    userLogin: userLoginReducer,
 })
 
-const initialState = {}
+const userInfoFromStorage = localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null
+
+const initialState = {
+    userLogin: { userInfo: userInfoFromStorage },
+}
 
 const middleware = [thunk]
 
