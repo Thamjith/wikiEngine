@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import ArticlesScreen from './templates/ArticlesScreen';
 import LoginScreen from './templates/LoginScreen';
 import HomeScreen from './templates/HomeScreen';
+import CreateArtilcle from './templates/CreateArtilcle';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
     <Header />
     <main className='py-3'>
       <Container>
+        <Route path='/createArticle' component={CreateArtilcle} />
         <Route path='/articles' component={ArticlesScreen} />
         <Route path='/login' component={LoginScreen} />
         <Route path='/' component={HomeScreen} exact/>

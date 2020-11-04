@@ -10,6 +10,7 @@ const articles = [
       title: 'Flutter',
       body:
         'A technology from Googlr that can create beautiful Native UI for both Android and IOS',
+      premium: true
     },
     
   ]

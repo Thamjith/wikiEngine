@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {
     articleListReducer,
+    articleListCountReducer,
 } from './reducers/articleReducers'
 
 import {
@@ -13,6 +14,7 @@ import {
 const reducer = combineReducers({
     articleList: articleListReducer,
     userLogin: userLoginReducer,
+    articleCount: articleListCountReducer,
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

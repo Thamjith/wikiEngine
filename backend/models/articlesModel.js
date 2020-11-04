@@ -14,8 +14,12 @@ const articleSchema = mongoose.Schema(
     body: {
         type: String,
         required: true,
-        unique: true,
     },
+    premium: {
+      type: String,
+      required: true,
+      default: false,
+  },
   },
   {
         timestamps: true,
