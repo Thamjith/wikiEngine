@@ -11,7 +11,10 @@ import {
     ARTICLE_CREATE_FAIL, 
     ARTICLE_DETAILS_REQUEST, 
     ARTICLE_DETAILS_SUCCESS, 
-    ARTICLE_DETAILS_FAIL
+    ARTICLE_DETAILS_FAIL, 
+    ARTICLE_LIST_BY_USERID_REQUEST, 
+    ARTICLE_LIST_BY_USERID_SUCCESS, 
+    ARTICLE_LIST_BY_USERID_FAIL
 }from '../constants/articleConstants'
 
 export const listArticles = () => async (
@@ -102,6 +105,28 @@ export const articleDetails = (id) => async (
     } catch (error) {
         dispatch({
             type: ARTICLE_DETAILS_FAIL,
+            payload:
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        })
+    }
+}
+
+export const articleListByUser = (id) => async (
+    dispatch
+  ) => {
+    try {
+        dispatch({ type: ARTICLE_LIST_BY_USERID_REQUEST })
+            const { data } = await axios.get(`/api/articles/${id}/articles`)
+  
+        dispatch({
+            type: ARTICLE_LIST_BY_USERID_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ARTICLE_LIST_BY_USERID_FAIL,
             payload:
             error.response && error.response.data.message
                 ? error.response.data.message

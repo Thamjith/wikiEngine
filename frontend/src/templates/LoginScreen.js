@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 
-const LoginScreen = () => {
+const LoginScreen = ({history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -15,6 +15,12 @@ const LoginScreen = () => {
 
     const userLogin = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = userLogin
+
+    useEffect(() => {
+        if (userInfo) {
+          history.push('/')
+        }
+    }, [history, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()

@@ -6,7 +6,8 @@ import {
     registerUser,
 } from '../controller/userController.js'
 
-router.route('/').post(registerUser)
 router.post('/login', authUser)
+
+router.route('/').post(registerUser)
 
 export default router

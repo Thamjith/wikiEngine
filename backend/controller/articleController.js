@@ -27,6 +27,16 @@ const getArticleById = asyncHandler(async (req, res) => {
     }
 })
 
+const getArticleByUserId = asyncHandler(async (req, res) => {
+    const article = await Article.find({user: req.params.id})
+
+    if(article){
+        res.json(article)
+    }else{
+        res.status(404).json({message:"Article not found"})
+    }
+})
+
 const articleCreate = asyncHandler(async (req, res) => {
     const { user, title, body, premium } = req.body
     // const article = await Article.findById(req.params.id)
@@ -56,4 +66,5 @@ export {
     getArticleCount,
     getArticleById,
     articleCreate,
+    getArticleByUserId
 }

@@ -9,6 +9,8 @@ import RegisterScreen from './templates/RegisterScreen';
 import HomeScreen from './templates/HomeScreen';
 import CreateArtilcleScreen from './templates/CreateArtilcleScreen';
 import ArticleDetailsScreen from './templates/ArticleDetailsScreen';
+import UserProfileScreen from './templates/UserProfileScreen';
+import ProfileUpdateScreen from './templates/ProfileUpdateScreen';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
     <Header />
     <main className='py-3'>
       <Container>
+        <Route path='/profileUpdate' component={ProfileUpdateScreen} />
+        <Route path='/profile' component={UserProfileScreen} />
         <Route path='/article/:id' component={ArticleDetailsScreen} />
         <Route path='/createArticle' component={CreateArtilcleScreen} />
         <Route path='/articles' component={ArticlesScreen} />
