@@ -16,7 +16,7 @@ const articleSchema = mongoose.Schema(
         required: true,
     },
     premium: {
-      type: String,
+      type: Boolean,
       required: true,
       default: false,
   },

@@ -8,12 +8,6 @@ const HomeScreen = () => {
 
     const Counts = useSelector((state) => state.articleCount)
     const { loading, count, error } = Counts
-    console.log(loading)
-    if(!loading){
-        // const {premiumArticlesCount, freeArticlesCount} = count
-        // console.log(premiumArticlesCount)
-        console.log("loading complete...")
-    }
 
     useEffect(() => {
         dispatch(articleCount())

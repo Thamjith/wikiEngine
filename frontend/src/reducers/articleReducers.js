@@ -4,7 +4,13 @@ import{
     ARTICLE_LIST_FAIL,
     ARTICLE_LIST_COUNT_REQUEST, 
     ARTICLE_LIST_COUNT_SUCCESS, 
-    ARTICLE_LIST_COUNT_FAIL
+    ARTICLE_LIST_COUNT_FAIL, 
+    ARTICLE_CREATE_REQUEST,
+    ARTICLE_CREATE_SUCCESS,
+    ARTICLE_CREATE_FAIL, 
+    ARTICLE_DETAILS_REQUEST, 
+    ARTICLE_DETAILS_SUCCESS, 
+    ARTICLE_DETAILS_FAIL
 }from '../constants/articleConstants'
 
 export const articleListReducer = (state = { articles: [] }, action) => {
@@ -35,6 +41,38 @@ export const articleListCountReducer = (state = {}, action) => {
                 count: action.payload,
             }
         case ARTICLE_LIST_COUNT_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const articleCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ARTICLE_CREATE_REQUEST:
+            return { loading: true, success: false }
+        case ARTICLE_CREATE_SUCCESS:
+            return {
+                loading: false,
+                success: true
+            }
+        case ARTICLE_CREATE_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const articleDetailsReducer = (state = {}, action) => {
+    switch (action.type) {
+        case ARTICLE_DETAILS_REQUEST:
+            return { loading: true }
+        case ARTICLE_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                detail: action.payload,
+            }
+        case ARTICLE_DETAILS_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state

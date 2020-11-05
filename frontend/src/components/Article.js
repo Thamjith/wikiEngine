@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
+import WordLimit from 'react-word-limit'
 // import Rating from './Rating'
 
 const Article = ({ article }) => {
@@ -13,7 +14,7 @@ const Article = ({ article }) => {
           </Card.Title>
         </Link>
 
-        <Card.Text as='h3'>{article.body}</Card.Text>
+        <Card.Text as='h3'><WordLimit limit={15}>{article.body}</WordLimit></Card.Text>
       </Card.Body>
     </Card>
   )
