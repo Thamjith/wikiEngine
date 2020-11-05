@@ -14,6 +14,7 @@ const Header = () => {
     
     const logoutHandler = () => {
         dispatch(logout())
+        document.location.href = '/'
     }
 
     return <header>
@@ -28,7 +29,7 @@ const Header = () => {
                     </LinkContainer>
                     {userInfo ? (
                         <NavDropdown title={userInfo.name} id='username'>
-                        <LinkContainer to='/profile'>
+                        <LinkContainer to={`/profile/${userInfo._id}`}>
                             <NavDropdown.Item>Profile</NavDropdown.Item>
                         </LinkContainer>
                         <LinkContainer to='/createArticle'>
