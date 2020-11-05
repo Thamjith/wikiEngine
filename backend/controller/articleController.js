@@ -61,10 +61,32 @@ const articleCreate = asyncHandler(async (req, res) => {
     }
 })
 
+const updateArticleById = asyncHandler(async (req, res) => {
+    const article = await Article.findById(req.params.id)
+
+    if (article) {
+      article.title = req.body.title || article.title
+      article.body = req.body.body || article.body
+      article.premium = req.body.premium || article.premium
+  
+      const updatedArticle = await article.save()
+  
+      res.json({
+        _id: updatedArticle._id,
+        title: updatedArticle.title,
+        body: updatedArticle.body,
+      })
+    } else {
+      res.status(404)
+      throw new Error('Article not found')
+    }
+  })
+
 export {
     getArticles,
     getArticleCount,
     getArticleById,
     articleCreate,
-    getArticleByUserId
+    getArticleByUserId,
+    updateArticleById
 }

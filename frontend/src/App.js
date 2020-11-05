@@ -11,6 +11,7 @@ import CreateArtilcleScreen from './templates/CreateArtilcleScreen';
 import ArticleDetailsScreen from './templates/ArticleDetailsScreen';
 import UserProfileScreen from './templates/UserProfileScreen';
 import ProfileUpdateScreen from './templates/ProfileUpdateScreen';
+import ArticleUpdateScreen from './templates/ArticleUpdateScreen';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
     <Header />
     <main className='py-3'>
       <Container>
+        <Route path='/articleUpdate/:id' component={ArticleUpdateScreen} />
         <Route path='/profileUpdate' component={ProfileUpdateScreen} />
         <Route path='/profile' component={UserProfileScreen} />
         <Route path='/article/:id' component={ArticleDetailsScreen} />

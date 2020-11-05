@@ -15,7 +15,7 @@ const ArticleUpdate = ({ article }) => {
         </Link>
 
         <Card.Text as='h3'><WordLimit limit={15}>{article.body}</WordLimit></Card.Text>
-        <Link to={`/article/${article._id}`}>
+        <Link to={`/articleUpdate/${article._id}`}>
           <Button variant="primary">Edit Article</Button>
         </Link>
       </Card.Body>
