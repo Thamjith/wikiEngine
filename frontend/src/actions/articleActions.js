@@ -17,7 +17,10 @@ import {
     ARTICLE_LIST_BY_USERID_FAIL, 
     ARTICLE_UPDATE_BY_ID_REQUEST, 
     ARTICLE_UPDATE_BY_ID_SUCCESS, 
-    ARTICLE_UPDATE_BY_ID_FAIL
+    ARTICLE_UPDATE_BY_ID_FAIL, 
+    ARTICLE_PREMIUM_LIST_REQUEST, 
+    ARTICLE_PREMIUM_LIST_SUCCESS, 
+    ARTICLE_PREMIUM_LIST_FAIL
 }from '../constants/articleConstants'
 
 export const listArticles = () => async (
@@ -25,7 +28,10 @@ export const listArticles = () => async (
   ) => {
     try {
         dispatch({ type: ARTICLE_LIST_REQUEST })
-            const { data } = await axios.get(`/api/articles`)
+
+        const { data } = await axios.get(
+            `/api/articles`
+        )
   
         dispatch({
             type: ARTICLE_LIST_SUCCESS,
@@ -34,6 +40,31 @@ export const listArticles = () => async (
     } catch (error) {
         dispatch({
             type: ARTICLE_LIST_FAIL,
+            payload:
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        })
+    }
+}
+
+export const listPremiumArticles = () => async (
+    dispatch
+  ) => {
+    try {
+        dispatch({ type: ARTICLE_PREMIUM_LIST_REQUEST })
+
+        const { data } = await axios.get(
+            `/api/articles/premiumArticles`
+        )
+  
+        dispatch({
+            type: ARTICLE_PREMIUM_LIST_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ARTICLE_PREMIUM_LIST_FAIL,
             payload:
             error.response && error.response.data.message
                 ? error.response.data.message

@@ -8,7 +8,8 @@ import {
     articleCreateReducer,
     articleDetailsReducer,
     articleListByUserIdReducer,
-    articleUpdateReducer
+    articleUpdateReducer,
+    premiumArticleListReducer
 } from './reducers/articleReducers'
 
 import {
@@ -19,6 +20,7 @@ import {
 
 const reducer = combineReducers({
     articleList         :   articleListReducer,
+    premiumArticleList  :   premiumArticleListReducer,
     userLogin           :   userLoginReducer,
     articleCount        :   articleListCountReducer,
     userRegister        :   userRegisterReducer,

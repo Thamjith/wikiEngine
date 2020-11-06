@@ -2,7 +2,12 @@ import asyncHandler from 'express-async-handler'
 import Article from '../models/articlesModel.js'
 
 const getArticles = asyncHandler(async (req, res) => {
-    const articles = await Article.find({})
+    const articles = await Article.find({"premium": false})
+    res.json({articles})
+})
+
+const getPremiumArticles = asyncHandler(async (req, res) => {
+    const articles = await Article.find({ })
     res.json({articles})
 })
 
@@ -89,5 +94,6 @@ export {
     getArticleById,
     articleCreate,
     getArticleByUserId,
-    updateArticleById
+    updateArticleById,
+    getPremiumArticles
 }

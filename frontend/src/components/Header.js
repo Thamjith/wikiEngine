@@ -23,9 +23,16 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <LinkContainer to='/articles'>
-                        <Nav.Link><i className='fas fa-newspaper'></i> Articles</Nav.Link>
-                    </LinkContainer>
+                    {userInfo?(
+                        <LinkContainer to='/premiumArticles'>
+                            <Nav.Link><i className='fas fa-newspaper'></i> Articles</Nav.Link>
+                        </LinkContainer>
+                        ):(
+                        <LinkContainer to='/articles'>
+                            <Nav.Link><i className='fas fa-newspaper'></i> Articles</Nav.Link>
+                        </LinkContainer>
+                        )
+                    }
                     {userInfo ? (
                         <NavDropdown title={userInfo.name} id='username'>
                         <LinkContainer to={`/profile`}>

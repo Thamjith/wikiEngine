@@ -6,15 +6,17 @@ import Article from '../components/Article'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 
-const ArticlesScreen = () => {
-
+const PremiumArticlesScreen = () => {
     const dispatch = useDispatch()
 
-    const articleList = useSelector((state) => state.articleList)
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
+
+    const articleList = useSelector((state) => state.premiumArticleList)
     const { loading, error, articles } = articleList
 
     useEffect(() => {
-            dispatch(listArticles())
+        dispatch(listPremiumArticles())
     }, [dispatch])
 
     return (
@@ -36,4 +38,4 @@ const ArticlesScreen = () => {
     )
 }
 
-export default ArticlesScreen
+export default PremiumArticlesScreen

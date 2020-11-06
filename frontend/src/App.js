@@ -12,6 +12,7 @@ import ArticleDetailsScreen from './templates/ArticleDetailsScreen';
 import UserProfileScreen from './templates/UserProfileScreen';
 import ProfileUpdateScreen from './templates/ProfileUpdateScreen';
 import ArticleUpdateScreen from './templates/ArticleUpdateScreen';
+import PremiumArticlesScreen from './templates/PremiumArticlesScreen';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/article/:id' component={ArticleDetailsScreen} />
         <Route path='/createArticle' component={CreateArtilcleScreen} />
         <Route path='/articles' component={ArticlesScreen} />
+        <Route path='/premiumArticles' component={PremiumArticlesScreen} />
         <Route path='/login' component={LoginScreen} />
         <Route path='/register' component={RegisterScreen} />
         <Route path='/' component={HomeScreen} exact/>
