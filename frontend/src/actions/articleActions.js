@@ -49,13 +49,25 @@ export const listArticles = () => async (
 }
 
 export const listPremiumArticles = () => async (
-    dispatch
+    dispatch,getState
   ) => {
     try {
         dispatch({ type: ARTICLE_PREMIUM_LIST_REQUEST })
 
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
         const { data } = await axios.get(
-            `/api/articles/premiumArticles`
+            `/api/articles/premiumArticles`,
+            config
         )
   
         dispatch({

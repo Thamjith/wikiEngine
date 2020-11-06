@@ -16,7 +16,7 @@ router.route('/create').post(articleCreate)
 
 router.route('/count').get(getArticleCount)
 
-router.route('/premiumArticles').get(getPremiumArticles)
+router.route('/premiumArticles').get(protect, getPremiumArticles)
 
 router.route('/update/:id').put(protect, updateArticleById)
 

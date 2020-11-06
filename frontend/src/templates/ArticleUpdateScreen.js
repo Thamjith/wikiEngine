@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { articleUpdate } from '../actions/articleActions'
+import { articleUpdate, articleDetails } from '../actions/articleActions'
 
 const ArticleUpdateScreen = ({match}) => {
 
@@ -13,12 +13,9 @@ const ArticleUpdateScreen = ({match}) => {
     const [premium, setPremium] = useState(false)
 
     const dispatch = useDispatch()
-
-    // const loggedInUser = useSelector((state) => state.userLogin)
-    // const { loading, error, userInfo } = loggedInUser
     
-    const articleDetails = useSelector((state) => state.articleDetails)
-    const { loading, error, detail } = articleDetails
+    const articleDetail = useSelector((state) => state.articleDetails)
+    const { loading, error, detail } = articleDetail
     
     useEffect(() => {
         if(detail){
