@@ -16,6 +16,10 @@ const ProfileUpdateScreen = () => {
     const userDetails = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = userDetails
 
+    if(!userInfo){
+        document.location.href = '/'
+    }
+
     useEffect(() => {
         setName(userInfo.name)
         setEmail(userInfo.email)

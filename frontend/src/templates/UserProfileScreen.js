@@ -14,6 +14,10 @@ const UserProfileScreen = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = userLogin
 
+    if(!userInfo){
+        document.location.href = '/'
+    }
+
     const userArticles = useSelector((state) => state.articleListByUser)
     const { loading:articleLoading, error:articleError, articles } = userArticles
 

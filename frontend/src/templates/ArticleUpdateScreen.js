@@ -13,6 +13,13 @@ const ArticleUpdateScreen = ({match}) => {
     const [premium, setPremium] = useState(false)
 
     const dispatch = useDispatch()
+
+    const userDetails = useSelector((state) => state.userLogin)
+    const { userInfo } = userDetails
+
+    if(!userInfo){
+        document.location.href = '/'
+    }
     
     const articleDetail = useSelector((state) => state.articleDetails)
     const { loading, error, detail } = articleDetail

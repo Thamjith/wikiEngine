@@ -15,6 +15,10 @@ const CreateArtilcle = () => {
 
     const loggedInUser = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = loggedInUser
+    
+    if(!userInfo){
+        document.location.href = '/'
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()
