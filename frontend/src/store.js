@@ -7,7 +7,8 @@ import {
     articleListCountReducer,
     articleCreateReducer,
     articleDetailsReducer,
-    articleListByUserIdReducer
+    articleListByUserIdReducer,
+    articleUpdateReducer
 } from './reducers/articleReducers'
 
 import {
@@ -24,7 +25,8 @@ const reducer = combineReducers({
     articleCreate       :   articleCreateReducer,
     articleDetails      :   articleDetailsReducer,
     articleListByUser   :   articleListByUserIdReducer,
-    userDetailsUpdate   :   userDetailsUpdateReducer
+    userDetailsUpdate   :   userDetailsUpdateReducer,
+    updatedArticle      :   articleUpdateReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

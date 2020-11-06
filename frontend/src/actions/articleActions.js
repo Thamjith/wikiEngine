@@ -14,7 +14,10 @@ import {
     ARTICLE_DETAILS_FAIL, 
     ARTICLE_LIST_BY_USERID_REQUEST, 
     ARTICLE_LIST_BY_USERID_SUCCESS, 
-    ARTICLE_LIST_BY_USERID_FAIL
+    ARTICLE_LIST_BY_USERID_FAIL, 
+    ARTICLE_UPDATE_BY_ID_REQUEST, 
+    ARTICLE_UPDATE_BY_ID_SUCCESS, 
+    ARTICLE_UPDATE_BY_ID_FAIL
 }from '../constants/articleConstants'
 
 export const listArticles = () => async (
@@ -127,6 +130,42 @@ export const articleListByUser = (id) => async (
     } catch (error) {
         dispatch({
             type: ARTICLE_LIST_BY_USERID_FAIL,
+            payload:
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        })
+    }
+}
+
+export const articleUpdate = (id, articleData) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ARTICLE_UPDATE_BY_ID_REQUEST })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.put(
+            `/api/articles/update/${id}`,
+            articleData,
+            config
+        )
+  
+        dispatch({
+            type: ARTICLE_UPDATE_BY_ID_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ARTICLE_UPDATE_BY_ID_FAIL,
             payload:
             error.response && error.response.data.message
                 ? error.response.data.message

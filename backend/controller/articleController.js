@@ -75,6 +75,7 @@ const updateArticleById = asyncHandler(async (req, res) => {
         _id: updatedArticle._id,
         title: updatedArticle.title,
         body: updatedArticle.body,
+        premium: updatedArticle.premium
       })
     } else {
       res.status(404)

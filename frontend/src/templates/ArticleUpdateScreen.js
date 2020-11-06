@@ -3,56 +3,87 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import FormContainer from '../components/FormContainer'
+import { articleUpdate, articleDetails } from '../actions/articleActions'
 
-const ArticleUpdateScreen = () => {
+const ArticleUpdateScreen = ({match}) => {
+
+    const [title, setTitle] = useState('')
+    const [articleBody, setArticleBody] = useState('')
+    const [premium, setPremium] = useState(false)
+
+    const dispatch = useDispatch()
+
+    // const loggedInUser = useSelector((state) => state.userLogin)
+    // const { loading, error, userInfo } = loggedInUser
+    
+    const articleDetails = useSelector((state) => state.articleDetails)
+    const { loading, error, detail } = articleDetails
+    
+    useEffect(() => {
+        if(detail){
+            setTitle(detail.title)
+            setArticleBody(detail.body)
+            setPremium(detail.premium)
+        }
+        else{
+            dispatch(articleDetails(match.params.id))
+        }
+    },[dispatch])
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        const articleID = detail._id
+        dispatch(articleUpdate( articleID , { title, articleBody, premium }))
+        document.location.href = `/article/${articleID}`
+    }
+
     return (
         <>
-        <h1>QWE</h1>
+            <FormContainer>
+                <h1>Update Article</h1>
+                {loading ? (
+                    <Loader />
+                ) : error ? (
+                    <Message variant='danger'>{error}</Message>
+                ) : (
+                <Form onSubmit={submitHandler}>
+                    <Form.Group controlId='title'>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Enter Title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    ></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId='body'>
+                    <Form.Label>Body</Form.Label>
+                    <Form.Control
+                        as='textarea'
+                        rows={3}
+                        value={articleBody}
+                        onChange={(e) => setArticleBody(e.target.value)}
+                    >{articleBody}</Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId='premiumarticle'>
+                        <Form.Check 
+                            type="checkbox"
+                            id="default-checkbox"
+                            label="Premium Article?"
+                            checked={premium}
+                            onChange={(e) => setPremium(!premium)}
+                        />
+                    </Form.Group>
+                    <Button type='submit' variant='primary'>
+                    Update
+                    </Button>
+                </Form>
+                )}
+            </FormContainer>
         </>
-        // <Container>
-        //     {error && <Message variant='danger'>{error}</Message>}
-        //     {loading && <Loader />}
-        //     <Row className='justify-content-md-center'>
-        //         <Col xs={12} md={6}>
-        //             <Form onSubmit={submitHandler}>
-
-        //                 <Form.Group controlId='email'>
-        //                     <Form.Label>Article Title</Form.Label>
-        //                     <Form.Control
-        //                         type='text'
-        //                         placeholder='Enter Title of the Article'
-        //                         value={title}
-        //                         onChange={(e) => setTitle(e.target.value)}
-        //                     ></Form.Control>
-        //                 </Form.Group>
-
-        //                 <Form.Group controlId='articleBody'>
-        //                     <Form.Label>Body</Form.Label>
-        //                     <Form.Control
-        //                         as='textarea'
-        //                         rows={3}
-        //                         value={articleBody}
-        //                         onChange={(e) => setArticleBody(e.target.value)}
-        //                     ></Form.Control>
-        //                 </Form.Group>
-
-        //                 <Form.Group controlId='premiumarticle'>
-        //                     <Form.Check 
-        //                         type="checkbox"
-        //                         id="default-checkbox"
-        //                         label="Premium Article?"
-        //                         checked={premium}
-        //                         onChange={(e) => setPremium(!premium)}
-        //                     />
-        //                 </Form.Group>
-
-        //                 <Button type='submit' variant='primary'>
-        //                 Submit
-        //                 </Button>
-        //             </Form>
-        //         </Col>
-        //     </Row>
-        // </Container>
     )
 }
 

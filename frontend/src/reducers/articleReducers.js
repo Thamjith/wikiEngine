@@ -13,7 +13,10 @@ import{
     ARTICLE_DETAILS_FAIL, 
     ARTICLE_LIST_BY_USERID_REQUEST, 
     ARTICLE_LIST_BY_USERID_SUCCESS, 
-    ARTICLE_LIST_BY_USERID_FAIL
+    ARTICLE_LIST_BY_USERID_FAIL, 
+    ARTICLE_UPDATE_BY_ID_REQUEST, 
+    ARTICLE_UPDATE_BY_ID_SUCCESS, 
+    ARTICLE_UPDATE_BY_ID_FAIL
 }from '../constants/articleConstants'
 
 export const articleListReducer = (state = { articles: [] }, action) => {
@@ -92,6 +95,22 @@ export const articleListByUserIdReducer = (state = { articles: [] }, action) => 
                 articles: action.payload,
             }
         case ARTICLE_LIST_BY_USERID_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+    }
+}
+
+export const articleUpdateReducer = (state = { }, action) => {
+    switch (action.type) {
+        case ARTICLE_UPDATE_BY_ID_REQUEST:
+            return { loading: true }
+        case ARTICLE_UPDATE_BY_ID_SUCCESS:
+            return {
+                loading: false,
+                article: action.payload,
+            }
+        case ARTICLE_UPDATE_BY_ID_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state
