@@ -7,7 +7,7 @@ const HomeScreen = () => {
     const dispatch = useDispatch()
 
     const Counts = useSelector((state) => state.articleCount)
-    const { loading, count, error } = Counts
+    const { count } = Counts
 
     useEffect(() => {
         dispatch(articleCount())

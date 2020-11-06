@@ -13,7 +13,7 @@ const ArticleDetailsScreen = ({match}) => {
 
     useEffect(() => {
         dispatch(articleDetails(match.params.id))
-    }, [dispatch])
+    }, [dispatch,match.params.id])
 
     return (
         <>

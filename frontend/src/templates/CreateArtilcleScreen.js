@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -15,9 +15,6 @@ const CreateArtilcle = () => {
 
     const loggedInUser = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = loggedInUser
-
-    const articleCreate = useSelector((state) => state.userLogin)
-    const { loading: articleLoaded, error: articleError, success } = articleCreate
 
     const submitHandler = (e) => {
         e.preventDefault()

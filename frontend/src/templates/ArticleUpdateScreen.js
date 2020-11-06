@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { articleUpdate, articleDetails } from '../actions/articleActions'
+import { articleUpdate } from '../actions/articleActions'
 
 const ArticleUpdateScreen = ({match}) => {
 
@@ -29,7 +29,7 @@ const ArticleUpdateScreen = ({match}) => {
         else{
             dispatch(articleDetails(match.params.id))
         }
-    },[dispatch])
+    },[dispatch,articleDetails,detail,match.params.id])
 
     const submitHandler = (e) => {
         e.preventDefault()

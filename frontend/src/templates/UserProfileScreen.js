@@ -19,7 +19,7 @@ const UserProfileScreen = () => {
 
     useEffect(() => {
         dispatch(articleListByUser(userInfo._id))
-    },[dispatch])
+    },[dispatch,userInfo._id])
 
     return (
         <>
@@ -40,10 +40,10 @@ const UserProfileScreen = () => {
                 </Card>
             )}
             <hr/>
-            {loading ? (
+            {articleLoading ? (
                 <Loader />
             ) : error ? (
-                <Message variant='danger'>{error}</Message>
+                <Message variant='danger'>{articleError}</Message>
             ) : (
                 <>
                 <h1>Your Articles</h1>

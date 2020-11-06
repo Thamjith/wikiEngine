@@ -19,7 +19,7 @@ const ProfileUpdateScreen = () => {
     useEffect(() => {
         setName(userInfo.name)
         setEmail(userInfo.email)
-    },[dispatch])
+    },[dispatch,userInfo.name,userInfo.email])
 
     const submitHandler = (e) => {
         e.preventDefault()
